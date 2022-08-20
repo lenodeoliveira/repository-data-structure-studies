@@ -9,7 +9,7 @@
     "test:verbose": "jest --runInBand",
     "lint": "npx eslint",
     "preversion": "npm run test && npm run lint",
-    "postversion": "git push --set-upstream origin main && git push --set-upstream origin main --tags"
+    "postversion": "git push && git push --tags"
   },
   "keywords": [],
   "author": "",
