@@ -1,3 +1,7 @@
+[![Coverage Status](https://coveralls.io/repos/github/lenodeoliveira/clean-ts-api/badge.svg)](https://coveralls.io/github/lenodeoliveira/clean-ts-api?branch=main)
+[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+
+
 # Repository of data structure studies 🚀
 
 > ## Data structure 🎲
