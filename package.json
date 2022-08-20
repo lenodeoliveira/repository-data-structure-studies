@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "rimraf dist && tsc",
-    "test": "jest --silent --noStackTrace --runInBand  --no-cache && coveralls < coverage/lcov.info",
+    "test": "jest --silent --noStackTrace --runInBand  --no-cache",
     "test:verbose": "jest --runInBand",
     "lint": "npx eslint",
     "preversion": "npm run test && npm run lint",
