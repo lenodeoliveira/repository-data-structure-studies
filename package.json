@@ -8,7 +8,8 @@
     "test": "jest --silent --noStackTrace --runInBand  --no-cache",
     "test:verbose": "jest --runInBand",
     "lint": "npx eslint",
-    "preversion": "npm run test && npm run lint"
+    "preversion": "npm run test && npm run lint",
+    "postversion": "git push && git push --tags"
   },
   "keywords": [],
   "author": "",
