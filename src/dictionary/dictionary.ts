@@ -1,42 +1,52 @@
 
-import { ValuePair } from '../utils/value-pair'
-
-type Table = {
-  [key: string]: string
-}
-
-export class Dictionary {
-  private readonly table: Table
-
-  constructor () {
+import { ValuePair } from '../models/value-pair'
+import { defaultToString } from '../utils/utils'
+export class Dictionary<K, V> {
+  private readonly table: { [key: string]: ValuePair<K, V> }
+  constructor (private readonly toStrFn: (key: K) => string = defaultToString) {
     this.table = {}
   }
 
-  hasKey (key: string): boolean {
-    if (Object.keys(this.table).includes(key)) {
+  hasKey (key: K): boolean {
+    return this.table[this.toStrFn(key)] != null
+  }
+
+  set (key: K, value: V): boolean {
+    if (key !== null && value !== null) {
+      const tableKey = this.toStrFn(key)
+      this.table[tableKey] = new ValuePair(key, value)
       return true
     }
     return false
   }
 
-  set (key: string, value: string): boolean {
-    if (key && value) {
-      this.table[key] = new ValuePair(key, value).toString()
-      return true
-    }
-    return false
-  }
-
-  remove (key: string): boolean {
+  remove (key: K): boolean {
     if (this.hasKey(key)) {
-      delete this.table.key
+      delete this.table[this.toStrFn(key)]
       return true
     }
+
     return false
   }
 
-  get (key: string): string {
-    const valuePair = this.table[key]
-    return valuePair == null ? undefined : valuePair
+  get (key: K): V {
+    const valuePair = this.table[this.toStrFn(key)]
+    return valuePair == null ? undefined : valuePair.value;
+  }
+
+  keyValues (): ValuePair<K, V>[] {
+    return Object.values(this.table)
+  }
+
+  keys (): K[] {
+    return this.keyValues().map(
+      (valuePair: ValuePair<K, V>) => valuePair.key
+    )
+  }
+
+  values (): V[] {
+    return this.keyValues().map(
+      (valuePair: ValuePair<K, V>) => valuePair.value
+    )
   }
 }
