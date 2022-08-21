@@ -2,7 +2,7 @@
 import { ValuePair } from '../models/value-pair'
 import { defaultToString } from '../utils/utils'
 export class Dictionary<K, V> {
-  private readonly table: { [key: string]: ValuePair<K, V> }
+  private table: { [key: string]: ValuePair<K, V> }
   constructor (private readonly toStrFn: (key: K) => string = defaultToString) {
     this.table = {}
   }
@@ -48,5 +48,41 @@ export class Dictionary<K, V> {
     return this.keyValues().map(
       (valuePair: ValuePair<K, V>) => valuePair.value
     )
+  }
+
+  forEach(callbackFn: Function): void {
+    const valuePair = this.keyValues();
+    for (let i = 0; i < valuePair.length; i += 1) {
+      const result = callbackFn(valuePair[i].key, valuePair[i].value)
+      if (result === false) {
+        break;
+      }
+    }
+  }
+
+  size (): number {
+    return Object.keys(this.table).length
+  }
+
+  isEmpty(): boolean {
+    return this.size() === 0
+  }
+
+  clear (): void {
+    this.table = {}
+  }
+
+  toString (): string {
+    if (this.isEmpty()) {
+      return '';
+    }
+    const valuePairs = this.keyValues();
+    let objString = `${valuePairs[0].toString()}`;
+   
+    for (let i = 1; i < valuePairs.length; i++) {
+      objString = `${objString}, ${valuePairs[i].toString()}`;
+    }
+    return objString;
+
   }
 }

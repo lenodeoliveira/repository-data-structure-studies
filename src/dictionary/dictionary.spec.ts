@@ -69,4 +69,111 @@ describe('Dictionary', () => {
         const keys = dictionary.values()
         expect(keys).toEqual([ 'value_dictionary_one', 'value_dictionary_two' ])
     })
+
+    test('Should return the total size of the dictionary', () => {
+        const dictionary = new Dictionary()
+        dictionary.set('key_one', 'value_dictionary_one')
+        dictionary.set('key_two', 'value_dictionary_two')
+        const size = dictionary.size()
+        expect(size).toBe(2)
+    })
+
+    test('Should check if the dictionary is empty (false)', () => {
+        const dictionary = new Dictionary()
+        dictionary.set('key_one', 'value_dictionary_one')
+        dictionary.set('key_two', 'value_dictionary_two')
+        const size = dictionary.isEmpty()
+        expect(size).toBeFalsy
+    })
+
+    test('Should check if the dictionary is empty (true)', () => {
+        const dictionary = new Dictionary()
+        const size = dictionary.isEmpty()
+        expect(size).toBeTruthy()
+    })
+
+    test('Should clear the dictionary', () => {
+        const dictionary = new Dictionary()
+        dictionary.set('key_one', 'value_dictionary_one')
+        dictionary.clear()
+        const size = dictionary.isEmpty()
+        expect(size).toBeTruthy()
+    })
+
+    test('Should return a string with the dictionary values', () => {
+        const dictionary = new Dictionary()
+        dictionary.set('Gandalf', 'gandalf@email.com')
+        dictionary.set('John', 'johnsnow@email.com') 
+        dictionary.set('Tyrion', 'tyrion@email.com')
+        const toString = dictionary.toString()
+        expect(toString).toBe('[#Gandalf: gandalf@email.com], [#John: johnsnow@email.com], [#Tyrion: tyrion@email.com]')
+    })
+
+    test('Should return an empty string', () => {
+        const dictionary = new Dictionary()
+        const emptyString = dictionary.toString()
+        expect(emptyString).toBe('') 
+    })
+
+    test('Should be possible to iterate over the dictionary', () => {
+        const dictionary = new Dictionary()
+        dictionary.set('Gandalf', 'gandalf@email.com')
+        dictionary.set('John', 'johnsnow@email.com') 
+        dictionary.set('Tyrion', 'tyrion@email.com')
+
+        const expectObj =  {
+            Gandalf: 'gandalf@email.com',
+            John: 'johnsnow@email.com',
+            Tyrion: 'tyrion@email.com'
+          }
+
+        let response: any
+        dictionary.forEach((k: any, v: any) => {
+            response = {
+                ...response,
+                [k]: v
+            }
+        })
+        expect(response).toEqual(expectObj)
+    })
+
+    test('allows to iterate with forEach', () => {
+        const dictionary = new Dictionary()
+        for (let i = 1; i <= 5; i++) {
+          expect(dictionary.set(i, i)).toEqual(true);
+        }
+    
+        dictionary.forEach((k: any, v: any) => {
+          expect(dictionary.hasKey(k)).toEqual(true);
+          expect(dictionary.get(k)).toEqual(v);
+        });
+      });
+    
+      test('allows to iterate with forEach and interrupt', () => {
+        const dictionary = new Dictionary()
+
+        for (let i = 1; i <= 5; i++) {
+          expect(dictionary.set(i, i)).toEqual(true);
+        }
+    
+        const size = dictionary.keys().length;
+    
+        let index = 1;
+        dictionary.forEach((k: any, v: any) => {
+          expect(dictionary.hasKey(k)).toEqual(true);
+          expect(dictionary.get(k)).toEqual(v);
+          index++;
+        });
+        expect(index).toEqual(size + 1);
+    
+        index = 1;
+        dictionary.forEach((k: any, v: any) => {
+          expect(dictionary.hasKey(k)).toEqual(true);
+          expect(dictionary.get(k)).toEqual(v);
+          index++;
+          return !(k % 3 === 0);
+        });
+        expect(index).toEqual(size - 1);
+      });
 })
+
