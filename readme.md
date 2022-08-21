@@ -6,7 +6,7 @@
 > ## Data structure 🎲
 
 1. ✅  Dictionary
-1. ⛔️  Hash table   
+1. ⏳  Hash table   
 1. ⛔️  Hash table linear probing
 1. ⛔️  Hash table linear probing lazy
 1. ⛔️  Hash table separate chaining
