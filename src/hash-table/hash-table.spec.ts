@@ -24,4 +24,12 @@ describe('HashTable', () => {
         const response = hashTable.put(null, null)
         expect(response).toBeFalsy()
     })
+
+    test('Should return a value when passing the corresponding key', () => {
+        const hashTable = new HashTable()
+        hashTable.put('Gandalf', 'gandalf@email.com')
+        const key = hashTable.hashCode('Gandalf')
+        const response = hashTable.get(key)
+        expect(response).toBe('gandalf@email.com')
+    })
 })
