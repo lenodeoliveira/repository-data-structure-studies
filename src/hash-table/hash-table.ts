@@ -24,4 +24,13 @@ export class HashTable<K, V> {
     hashCode (key: K) {
         return this.loseLoseHashCode(key)
     }
+
+    put (key: K, value: V): boolean {
+        if (key !== null && value !== null) {
+            const position = this.hashCode(key)
+            this.table[position] = new ValuePair(key, value)
+            return true
+        }
+        return false
+    }
 }
