@@ -32,4 +32,10 @@ describe('HashTable', () => {
         const response = hashTable.get(key)
         expect(response).toBe('gandalf@email.com')
     })
+
+    test('Should return undefined if no record exists', () => {
+        const hashTable = new HashTable()
+        const response = hashTable.get(22)
+        expect(response).toBeUndefined()
+    })
 })

@@ -36,6 +36,6 @@ export class HashTable<K, V> {
 
     get (key: K): V {
         const valuePair = this.table[this.hashCode(key)]
-        return valuePair === null ? undefined : valuePair.value
+        return valuePair === undefined ? undefined : valuePair.value
     }
 }
