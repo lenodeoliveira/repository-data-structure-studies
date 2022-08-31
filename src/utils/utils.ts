@@ -1,3 +1,5 @@
+export type IEqualsFunction<T> = (a: T, b: T) => boolean;
+
 export function defaultToString (item: any): string {
   if (item === null) {
     return 'NULL'
@@ -7,4 +9,8 @@ export function defaultToString (item: any): string {
     return `${item}`
   }
   return item.toString()
+}
+
+export function defaultEquals<T>(a: T, b: T): boolean {
+  return a === b;
 }

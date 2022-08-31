@@ -38,4 +38,38 @@ export class HashTable<K, V> {
         const valuePair = this.table[this.hashCode(key)]
         return valuePair === undefined ? undefined : valuePair.value
     }
+
+    remove (key: K): boolean {
+        const hash = this.hashCode(key)
+        const valuePair = this.table[hash]
+
+        if (valuePair !== undefined) {
+            delete this.table[hash]
+            return true
+        }
+        return false
+    }
+
+    isEmpty (): boolean {
+        return this.size() === 0
+    }
+
+    size (): number {
+      return Object.keys(this.table).length
+    }
+
+    toString (): string {
+        if (this.isEmpty()) {
+            return ''
+        }
+        const keys = Object.keys(this.table)
+        let objString = `{${keys[0]} => ${this.table[keys[0]].toString()}}` 
+        for (let i = 1; i < keys.length; i++) { 
+            objString = `${objString},{${keys[i]} => ${this.table[keys[i]].toString()}}` 
+        } 
+        return objString
+    }
+
 }
+
+
