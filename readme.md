@@ -17,7 +17,7 @@
 1. ⛔️  Stack
 1. ⛔️  Stack array
 1. ⛔️  Stack linked list
-1. ⛔️  Linked list
+1. ✅  Linked list
 1. ⛔️  Sorted linked list
 1. ⛔️  Circular linked list
 1. ⛔️  Doubly linked list
