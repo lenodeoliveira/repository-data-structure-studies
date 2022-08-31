@@ -7,9 +7,9 @@
 
 1. ✅  Dictionary
 1. ✅  Hash table   
-1. ⏳  Hash table linear probing
+1. ⛔️  Hash table linear probing
 1. ⛔️  Hash table linear probing lazy
-1. ⛔️  Hash table separate chaining
+1. ✅  Hash table separate chaining
 1. ⛔️  Deque
 1. ⛔️  Priority queue array
 1. ⛔️  graph
