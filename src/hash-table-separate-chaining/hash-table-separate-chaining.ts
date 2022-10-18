@@ -11,10 +11,10 @@ export class HashTableSeparateChaining<K, V> {
     }
 
     put (key: K, value: V): boolean {
-        if (key !== null && value !== null) {
+        if (key !== undefined && value !== undefined) {
             const position = this.hashCode(key)
 
-            if (this.table[position] === null) {
+            if (this.table[position] === undefined) {
                 this.table[position] = new LinkedList<ValuePair<K, V>>();
             }
             this.table[position].push(new ValuePair(key, value));
@@ -39,7 +39,5 @@ export class HashTableSeparateChaining<K, V> {
         }
         return hash % 37
     }
-
-
 
 }
